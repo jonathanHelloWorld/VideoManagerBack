@@ -9,4 +9,18 @@
 <body>
     <h1>Hello World Html</h1>
 </body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+//   socket.emit('any event', "event hello world!");
+
+  socket.on('play', function(msg){
+      console.log(msg);
+    });
+
+    socket.on('stop', function(msg){
+      console.log(msg);
+    });
+
+</script>
 </html>

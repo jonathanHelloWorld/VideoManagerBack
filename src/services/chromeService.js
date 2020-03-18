@@ -5,6 +5,6 @@ const cp = require('child_process'),
 
 
 export default function OpenChrome(){
-    console.log("entrou here");
+    // console.log("entrou here");
     cp.spawn('c:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe', ['-kiosk', url_to_open]);
 }
