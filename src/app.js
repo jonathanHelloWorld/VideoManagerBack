@@ -1,8 +1,7 @@
 import express from 'express';
-import OpenChrome,{CloseChrome} from './services/chromeService'
+import openChrome,{closeChrome} from './services/chromeService'
 import sio from 'socket.io'
 import http from 'http'
-
 
 const app = express();
 
@@ -48,7 +47,9 @@ setTimeout(()=>{
   io.to(socketId).emit('play', "teste2.mp4");
 },5000);
 
-OpenChrome();
+
+openChrome();
+
 
 // setTimeout(()=>{
 //   console.log("entrou here2");
