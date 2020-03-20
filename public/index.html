@@ -5,22 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+  <style>
+      /* * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        margin: 0;
+        font-family: Arial;
+        font-size: 17px;
+      } */
+      
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100% !important;; 
+        height: auto !important;
+      }
+       /* min-height: 100%; */
+      </style>
 </head>
+
 <body>
-    <h1>Hello World Html</h1>
+
+    <video muted loop controls id="myVideo">
+      <source id="mySource" type="video/mp4">
+      <!-- <source src="teste.ogg" type="video/ogg">  -->
+    </video>
+
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io();
 //   socket.emit('any event', "event hello world!");
 
-  socket.on('play', function(msg){
-      console.log(msg);
-    });
+  socket.on('play', function(videoName){
+      
+    var elem = document.getElementById("myVideo");
+    var source = document.getElementById('mySource');
+    elem.pause();
 
-    socket.on('stop', function(msg){
-      console.log(msg);
-    });
+    source.setAttribute('src', videoName);
 
+    elem.load();
+    elem.play();
+
+  });
+
+  socket.on('stop', function(msg){
+    console.log(msg);
+  });
+    
+
+    // var elem = document.getElementById("myVideo");
+    // // elem.webkitRequestFullscreen();
+    // var source = document.createElement('source');
+
+    // source.setAttribute('src', "teste.mp4");
+
+    // elem.appendChild(source);
+    // elem.play();
+
+    // console.log(elem.videoWidth);
+    // console.log(elem.videoHeight);
+
+    // setTimeout(function() {  
+    //     elem.pause();
+
+    //     source.setAttribute('src', "teste2.mp4"); 
+
+    //     elem.load();
+    //     elem.play();
+    // }, 5000);
+   
 </script>
 </html>

@@ -1,5 +1,5 @@
 import express from 'express';
-import OpenChrome from './services/chromeService'
+import OpenChrome,{CloseChrome} from './services/chromeService'
 import sio from 'socket.io'
 import http from 'http'
 
@@ -23,6 +23,9 @@ io.on('connection', function(socket){
   console.log('a user connected');
 
   socketId = socket.id;
+  
+  socket.emit('play',"teste.mp4");
+
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
@@ -42,10 +45,13 @@ io.on('connection', function(socket){
 });
 
 setTimeout(()=>{
-  console.log("entrou here");
-  io.to(socketId).emit('play', 'play');
-  io.to(socketId).emit('stop', 'stop');
-},1000);
+  io.to(socketId).emit('play', "teste2.mp4");
+},5000);
 
 OpenChrome();
+
+// setTimeout(()=>{
+//   console.log("entrou here2");
+//   CloseChrome();
+// },5000);
 
